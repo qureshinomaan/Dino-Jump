@@ -203,7 +203,7 @@ while run :
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			if gameOver == True:
 				mx,my = pygame.mouse.get_pos()
-				print(mx,my)
+				#print(mx,my)
 				if mx > retx and mx < retx + retw :
 					if my > rety and my < rety + reth :
 						win.fill((255,255,255))
@@ -224,7 +224,7 @@ while run :
 	lastcac -= vel 
 	if lastc - lastcac > 200 and len(cactuses) < 5 :
 		cacx = random.randint(lastc+100, lastc + 400)
-		print(cacx - lastc)
+		#print(cacx - lastc)
 		lastcac, lastc = cacx, cacx
 		cactuses.append(cactus(cacx, cacy, cacw, cach,cacimg))
 
@@ -233,10 +233,12 @@ while run :
 #========================================================#
 	keys = pygame.key.get_pressed()
 	if keys[pygame.K_p] :
-		while True :
-			keys = pygame.key.get_pressed()
-			if keys[pygame.K_d] :
-				break
+		paused = True 
+		while paused :
+			for event in pygame.event.get() :
+				if event.type == pygame.KEYDOWN :
+					if event.key == pygame.K_d :
+						paused = False
 
 	if dino.isjump == False :
 		if keys[pygame.K_SPACE] :
