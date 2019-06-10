@@ -182,7 +182,7 @@ def gameRetry():
 		pygame.display.update()
 
 def restart() :
-	global gameOver, lastcac, lastc, score
+	global gameOver, lastcac, lastc, score,vel
 	vel, gameOver = 10, False 
 	numObs, score, prevscore = 0, 0, 0
 	del cactuses[0:len(cactuses)]
