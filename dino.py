@@ -125,11 +125,12 @@ cloud = []
 cloud.append(clouds(cldx, cldy, cldw, cldh,img))
 cloud.append(clouds(scldx, scldy, scldw, scldh,simg))
 
-# Cactus #
+# Obstacles #
 cactuses = []
-cacimg = pygame.image.load('./images/obs1.png')
-cacw, cach = 25, 50
-cacy = bcgy - cach + 12
+cacimg = [pygame.image.load('./images/obs'+str(i)+'.png') for i in range(1,7)]
+print(len(cacimg))
+cacwh =[(25, 50),(50,100),(62,70),(101,90),(72,50),(58,60)]
+cacy = [bcgy - cach[1] + 12 for cach in cacwh]
 lastcac = winx	
 lastc = winx
 
@@ -224,9 +225,11 @@ while run :
 	lastcac -= vel 
 	if lastc - lastcac > 200 and len(cactuses) < 5 :
 		cacx = random.randint(lastc+100, lastc + 400)
+		cindex = random.randint(0,5)
+		#print(cindex+1)
 		#print(cacx - lastc)
 		lastcac, lastc = cacx, cacx
-		cactuses.append(cactus(cacx, cacy, cacw, cach,cacimg))
+		cactuses.append(cactus(cacx, cacy[cindex], cacwh[cindex][0], cacwh[cindex][1],cacimg[cindex]))
 
 #========================================================#
 # Dino Jumps #
